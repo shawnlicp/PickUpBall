@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1089912635035",
+    "firebase_url": "https://pickupball-b0ba1.firebaseio.com",
+    "project_id": "pickupball-b0ba1",
+    "storage_bucket": "pickupball-b0ba1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1089912635035:android:1f750076e85729b8",
+        "android_client_info": {
+          "package_name": "com.example.shawnli.pickupball"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1089912635035-421t47gk62eqbg60mgsn6877se6nri9j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shawnli.pickupball",
+            "certificate_hash": "a8599db0ca735d84ff785933a07c995fd8833da9"
+          }
+        },
+        {
+          "client_id": "1089912635035-5phvr2mcklt8ct2mj220r1ktv9u3175c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjzC3-TGoRFCmvIY8iFWNxhdg76o3Bokw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1089912635035-5phvr2mcklt8ct2mj220r1ktv9u3175c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
