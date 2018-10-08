@@ -1,0 +1,37 @@
+[
+  {
+    "name" : "BYU court",
+    "address" : "15 Field House Dr, Provo, UT 84604",
+    "latitude": "40.248949",
+    "longtitude" : "-111.653503",
+    "players" : []
+  },
+  {
+    "name" : "Provo Recreation Center",
+    "address" : "320 500 N, Provo, UT 84601",
+    "latitude" : "40.241386",
+    "longtitude" : "-111.664546",
+    "players" : []
+  },
+  {
+    "name" : "Utah Valley University",
+    "address" : "800 W University Pkwy, Orem, UT 84058",
+    "latitude" : "40.277191",
+    "longtitude" : "-111.717667",
+    "players" : []
+  },
+  {
+    "name" : "Vasa Fitness",
+    "address" : "44 800 N, Orem, UT 84057",
+    "latitude" : "40.311450",
+    "longtitude" : "-111.694860",
+    "players" : []
+  },
+  {
+    "name" : "Orem Fitness Center",
+    "address" : "580 165 S, Orem, UT 84058",
+    "latitude" : "40.293949",
+    "longtitude" : "-111.710411",
+    "players" : []
+  }
+]

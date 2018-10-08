@@ -12,6 +12,24 @@ public class Court {
     List<User> players = null;
     String name;
     String address;
+    float latitude;
+    float longtitude;
+
+    public float getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(float latitude) {
+        this.latitude = latitude;
+    }
+
+    public float getLongtitude() {
+        return longtitude;
+    }
+
+    public void setLongtitude(float longtitude) {
+        this.longtitude = longtitude;
+    }
 
     public String getName() {
         return name;
@@ -29,7 +47,7 @@ public class Court {
         this.address = address;
     }
 
-    Court(){
+    public Court(){
         players = new ArrayList<>();
     }
 
