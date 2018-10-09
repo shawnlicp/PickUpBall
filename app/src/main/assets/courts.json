@@ -3,35 +3,77 @@
     "name" : "BYU court",
     "address" : "15 Field House Dr, Provo, UT 84604",
     "latitude": "40.248949",
-    "longtitude" : "-111.653503",
+    "longitude": "-111.653503",
     "players" : []
   },
   {
     "name" : "Provo Recreation Center",
     "address" : "320 500 N, Provo, UT 84601",
     "latitude" : "40.241386",
-    "longtitude" : "-111.664546",
+    "longitude": "-111.664546",
     "players" : []
   },
   {
     "name" : "Utah Valley University",
     "address" : "800 W University Pkwy, Orem, UT 84058",
     "latitude" : "40.277191",
-    "longtitude" : "-111.717667",
+    "longitude": "-111.717667",
     "players" : []
   },
   {
     "name" : "Vasa Fitness",
     "address" : "44 800 N, Orem, UT 84057",
     "latitude" : "40.311450",
-    "longtitude" : "-111.694860",
+    "longitude": "-111.694860",
     "players" : []
   },
   {
     "name" : "Orem Fitness Center",
     "address" : "580 165 S, Orem, UT 84058",
     "latitude" : "40.293949",
-    "longtitude" : "-111.710411",
+    "longitude": "-111.710411",
+    "players" : []
+  },
+  {
+    "name" : "Maeser Park",
+    "address" : "451 E 600 S, Provo, UT 84606",
+    "latitude" : "40.225968",
+    "longitude": "-111.651230",
+    "players" : []
+  },
+  {
+    "name" : "Carterville Park",
+    "address" : "2400 N Carterville Rd, Provo, UT 84604",
+    "latitude" : "40.265795",
+    "longitude": "-111.672657",
+    "players" : []
+  },
+  {
+    "name" : "Heritage Halls",
+    "address" : "825 Heritage Dr, Provo, UT 84604",
+    "latitude" : "40.254115",
+    "longitude": "-111.646521",
+    "players" : []
+  },
+  {
+    "name" : "Wyview Park",
+    "address" : "1990 N University Ave, Provo, UT 84604",
+    "latitude" : "40.261241",
+    "longitude": "-111.660596",
+    "players" : []
+  },
+  {
+    "name" : "The Colony",
+    "address" : "487 N 750 E, Provo, UT 84606",
+    "latitude" : "40.240318",
+    "longitude": "-111.645998",
+    "players" : []
+  },
+  {
+    "name" : "King Henry",
+    "address" : "1130 E 450 N, Provo, UT 84606",
+    "latitude" : "40.240115",
+    "longitude": "-111.638746",
     "players" : []
   }
 ]

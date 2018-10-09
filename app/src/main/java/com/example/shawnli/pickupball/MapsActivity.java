@@ -80,7 +80,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         List<Court> courts = Single.getInstance().getCourts();
 
         for( Court court : courts){
-            LatLng location = new LatLng(court.getLatitude(), court.getLongtitude());
+            LatLng location = new LatLng(court.getLatitude(), court.getLongitude());
             Marker marker = mMap.addMarker(new MarkerOptions().position(location).title(court.getName())
                             .snippet("There are 0 players playing right now")
                             .icon(BitmapDescriptorFactory.fromAsset("icon.png")));

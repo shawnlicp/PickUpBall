@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 court.setName(temp.getString("name"));
                 court.setAddress(temp.getString("address"));
                 court.setLatitude(Float.parseFloat(temp.getString("latitude")));
-                court.setLongtitude(Float.parseFloat(temp.getString("longtitude")));
+                court.setLongitude(Float.parseFloat(temp.getString("longitude")));
                 //todo: take care of the list of users
                 courts.add(court);
             }

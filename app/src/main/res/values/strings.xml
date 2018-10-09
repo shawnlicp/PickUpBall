@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">PickUpBall</string>
     <string name="title_activity_maps">Map</string>
+    <string name="start_game">Start Game</string>
+    <string name="join_game">Join Game</string>
+    <string name="court_name">Court Name</string>
+    <string name="court_address">Court Address</string>
+    <string name="basketball_img">Basketball Image</string>
 </resources>

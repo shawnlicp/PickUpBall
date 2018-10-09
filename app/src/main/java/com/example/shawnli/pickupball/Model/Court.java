@@ -9,11 +9,11 @@ import java.util.List;
 
 public class Court {
     //Location
-    List<User> players = null;
+    List<Game> games = null;
     String name;
     String address;
     float latitude;
-    float longtitude;
+    float longitude;
 
     public float getLatitude() {
         return latitude;
@@ -23,12 +23,12 @@ public class Court {
         this.latitude = latitude;
     }
 
-    public float getLongtitude() {
-        return longtitude;
+    public float getLongitude() {
+        return longitude;
     }
 
-    public void setLongtitude(float longtitude) {
-        this.longtitude = longtitude;
+    public void setLongitude(float longitude) {
+        this.longitude = longitude;
     }
 
     public String getName() {
@@ -48,14 +48,14 @@ public class Court {
     }
 
     public Court(){
-        players = new ArrayList<>();
+        games = new ArrayList<>();
     }
 
-    public List<User> getPlayers(){
-        return players;
+    public List<Game> getGames(){
+        return games;
     }
 
     public int getPlayerSize(){
-        return players.size();
+        return games.size();
     }
 }
