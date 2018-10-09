@@ -4,63 +4,188 @@
     "address" : "15 Field House Dr, Provo, UT 84604",
     "latitude": "40.248949",
     "longitude": "-111.653503",
-    "games" : []
+    "games" : [
+      {
+        "name" : "Game4",
+        "startTime" : "0",
+        "duration": "30",
+        "players" : [
+          { "username":"maciasa", "password":"idk" },
+          { "username":"shawnli", "password":"idk" },
+          { "username":"macDaddy", "password":"idk" },
+          { "username":"kHansen", "password":"idk" },
+          { "username":"kalinTheBum", "password":"idk" },
+          { "username":"tylerTheMan", "password":"idk" }
+        ]
+      },
+      {
+        "name" : "Game3",
+        "startTime" : "0",
+        "duration": "30",
+        "players" : [
+          { "username":"shawnli", "password":"idk" }
+        ]
+      }
+    ]
   },
   {
     "name" : "Provo Recreation Center",
     "address" : "320 500 N, Provo, UT 84601",
     "latitude" : "40.241386",
     "longitude": "-111.664546",
-    "games" : []
+    "games" : [
+      {
+        "name" : "Game1",
+        "startTime" : "0",
+        "duration": "30",
+        "players" : [
+          { "username":"maciasa", "password":"idk" },
+          { "username":"shawnli", "password":"idk" }
+        ]
+      },
+      {
+        "name" : "Game2",
+        "startTime" : "0",
+        "duration": "30",
+        "players" : [
+          { "username":"maciasa", "password":"idk" },
+          { "username":"shawnli", "password":"idk" },
+          { "username":"macDaddy", "password":"idk" }
+        ]
+      }
+    ]
   },
   {
     "name" : "Utah Valley University",
     "address" : "800 W University Pkwy, Orem, UT 84058",
     "latitude" : "40.277191",
     "longitude": "-111.717667",
-    "games" : []
+    "games" : [
+      {
+        "name" : "Game5",
+        "startTime" : "0",
+        "duration": "30",
+        "players" : [
+          { "username":"shawnli", "password":"idk" },
+          { "username":"macDaddy", "password":"idk" }
+        ]
+      }
+    ]
   },
   {
     "name" : "Vasa Fitness",
     "address" : "44 800 N, Orem, UT 84057",
     "latitude" : "40.311450",
     "longitude": "-111.694860",
-    "games" : []
+    "games" : [
+      {
+        "name" : "Game6",
+        "startTime" : "0",
+        "duration": "30",
+        "players" : [
+          { "username":"kalinTheBum", "password":"idk" },
+          { "username":"tylerTheMan", "password":"idk" }
+        ]
+      }
+    ]
   },
   {
     "name" : "Orem Fitness Center",
     "address" : "580 165 S, Orem, UT 84058",
     "latitude" : "40.293949",
     "longitude": "-111.710411",
-    "games" : []
+    "games" : [
+      {
+        "name" : "Game7",
+        "startTime" : "0",
+        "duration": "30",
+        "players" : [
+          { "username":"shawnli", "password":"idk" },
+          { "username":"kalinTheBum", "password":"idk" },
+          { "username":"tylerTheMan", "password":"idk" }
+        ]
+      }
+    ]
   },
   {
     "name" : "Maeser Park",
     "address" : "451 E 600 S, Provo, UT 84606",
     "latitude" : "40.225968",
     "longitude": "-111.651230",
-    "games" : []
+    "games" : [
+      {
+        "name" : "Game8",
+        "startTime" : "0",
+        "duration": "30",
+        "players" : [
+          { "username":"shawnli", "password":"idk" },
+          { "username":"macDaddy", "password":"idk" },
+          { "username":"kalinTheBum", "password":"idk" },
+          { "username":"tylerTheMan", "password":"idk" }
+        ]
+      }
+    ]
   },
   {
     "name" : "Carterville Park",
     "address" : "2400 N Carterville Rd, Provo, UT 84604",
     "latitude" : "40.265795",
     "longitude": "-111.672657",
-    "games" : []
+    "games" : [
+      {
+        "name" : "Game9",
+        "startTime" : "0",
+        "duration": "30",
+        "players" : [
+          { "username":"maciasa", "password":"idk" },
+          { "username":"kHansen", "password":"idk" }
+        ]
+      }
+    ]
   },
   {
     "name" : "Heritage Halls",
     "address" : "825 Heritage Dr, Provo, UT 84604",
     "latitude" : "40.254115",
     "longitude": "-111.646521",
-    "games" : []
+    "games" : [
+      {
+        "name" : "Game10",
+        "startTime" : "0",
+        "duration": "30",
+        "players" : [
+          { "username":"maciasa", "password":"idk" },
+          { "username":"shawnli", "password":"idk" },
+          { "username":"macDaddy", "password":"idk" },
+          { "username":"kalinTheBum", "password":"idk" },
+          { "username":"tylerTheMan", "password":"idk" }
+        ]
+      }
+    ]
   },
   {
     "name" : "Wyview Park",
     "address" : "1990 N University Ave, Provo, UT 84604",
     "latitude" : "40.261241",
     "longitude": "-111.660596",
-    "games" : []
+    "games" : [
+      {
+        "name" : "Game11",
+        "startTime" : "0",
+        "duration": "30",
+        "players" : [
+          { "username":"maciasa", "password":"idk" },
+          { "username":"shawnli", "password":"idk" },
+          { "username":"macDaddy", "password":"idk" },
+          { "username":"kHansen", "password":"idk" },
+          { "username":"kalinTheBum", "password":"idk" },
+          { "username":"tylerTheMan", "password":"idk" },
+          { "username":"jimmerF", "password":"idk" },
+          { "username":"tannerM", "password":"idk" },
+          { "username":"michaelJ", "password":"idk" }
+        ]
+      }
+    ]
   },
   {
     "name" : "The Colony",
