@@ -29,14 +29,14 @@ public class Single {
         this.courts = courts;
     }
 
-    private List<Game> games = null;
+    private Court currentCourt;
 
-    public List<Game> getGames() {
-        return games;
+    public Court getCurrentCourt() {
+        return currentCourt;
     }
 
-    public void setGames(List<Game> games) {
-        this.games = games;
+    public void setCurrentCourt(Court currentCourt) {
+        this.currentCourt = currentCourt;
     }
 
     public void SetDB(FirebaseFirestore db_){
