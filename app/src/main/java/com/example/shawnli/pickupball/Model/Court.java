@@ -55,6 +55,10 @@ public class Court {
         return games;
     }
 
+    public void addGame(Game game){
+        games.add(game);
+    }
+
     public int getPlayerSize(){
         return games.size();
     }

@@ -1,6 +1,7 @@
 package com.example.shawnli.pickupball;
 
 import com.example.shawnli.pickupball.Model.Court;
+import com.example.shawnli.pickupball.Model.Game;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
@@ -26,6 +27,16 @@ public class Single {
 
     public void setCourts(List<Court> courts) {
         this.courts = courts;
+    }
+
+    private List<Game> games = null;
+
+    public List<Game> getGames() {
+        return games;
+    }
+
+    public void setGames(List<Game> games) {
+        this.games = games;
     }
 
     public void SetDB(FirebaseFirestore db_){

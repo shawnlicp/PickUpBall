@@ -27,6 +27,14 @@ public class Game {
         players = new ArrayList<>();
     }
 
+    public void addPlayer(User player){
+        players.add(player);
+    }
+
+    public void setPlayers(List<User> players) {
+        this.players = players;
+    }
+
     public List<User> getPlayers(){
         return players;
     }
