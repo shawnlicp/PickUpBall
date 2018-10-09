@@ -59,6 +59,10 @@ public class Court {
         games.add(game);
     }
 
+    public void setGames(List<Game> games) {
+        this.games = games;
+    }
+
     public int getPlayerSize(){
         return games.size();
     }
