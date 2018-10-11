@@ -9,7 +9,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="25dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -23,6 +25,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="55dp"
             android:orientation="vertical">
 
             <TextView
@@ -44,40 +48,24 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/gameRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="380dp"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="end"
+        android:clipToPadding="false"
+        android:overScrollMode="never">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/playerRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+    </android.support.v7.widget.RecyclerView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+
+    <Button
+        android:id="@+id/createGame"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        style="?android:attr/buttonBarStyle">
+        android:text="@string/start_game"
+        android:layout_marginStart="145dp"
+        android:layout_marginTop="-25dp"
+        style="?android:attr/buttonBarButtonStyle"/>
 
-        <Button
-                android:id="@+id/takeMeButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/join_game"
-                android:layout_marginStart="50dp"
-                tools:layout_editor_absoluteX="60dp"
-                tools:layout_editor_absoluteY="434dp"
-                style="?android:attr/buttonBarButtonStyle"/>
-
-        <Button
-            android:id="@+id/createGame"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/start_game"
-            android:layout_marginStart="50dp"
-            tools:layout_editor_absoluteX="214dp"
-            tools:layout_editor_absoluteY="434dp"
-            style="?android:attr/buttonBarButtonStyle"/>
-
-    </LinearLayout>
 
 
 
