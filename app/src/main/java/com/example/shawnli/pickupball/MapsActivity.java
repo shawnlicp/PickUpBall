@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.shawnli.pickupball.Model.Court;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -48,8 +49,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), DetailActivity.class);
-                startActivity(intent);
+
+                if(Single.getInstance().getCurrentCourt() == null){
+                    //make a toast
+                    Toast.makeText(getBaseContext(),"Please select a marker",Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Intent intent = new Intent(getBaseContext(), GameActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }
@@ -78,7 +86,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             LatLng location = new LatLng(court.getLatitude(), court.getLongitude());
             Marker marker = mMap.addMarker(new MarkerOptions().position(location).title(court.getName())
                             .snippet("There are 0 players playing right now")
-                            .icon(BitmapDescriptorFactory.fromAsset("icon.png")));
+                            .icon(BitmapDescriptorFactory.fromAsset("icon.png"))
+                            .flat(true));
             markerCourtMap.put(marker,court);
             marker.showInfoWindow();
         }
@@ -88,6 +97,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public boolean onMarkerClick(Marker marker) {
                 Court court = markerCourtMap.get(marker);
+                Single.getInstance().setCurrentCourt(court);
                 nameView.setText(court.getName());
                 addressView.setText(court.getAddress());
                 Single.getInstance().setCurrentCourt(court);

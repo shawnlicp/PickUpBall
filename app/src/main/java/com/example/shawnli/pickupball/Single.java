@@ -39,6 +39,9 @@ public class Single {
     }
 
 
+    private Court currentCourt = null;
+
+
     public Court getCurrentCourt() {
         return currentCourt;
     }
