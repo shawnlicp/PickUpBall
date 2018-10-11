@@ -29,7 +29,7 @@ public class Single {
         this.courts = courts;
     }
 
-    private Court currentCourt;
+    private Court currentCourt = null;
 
     public Court getCurrentCourt() {
         return currentCourt;
