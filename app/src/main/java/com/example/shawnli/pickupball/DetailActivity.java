@@ -1,5 +1,6 @@
 package com.example.shawnli.pickupball;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -47,6 +49,7 @@ public class DetailActivity extends AppCompatActivity {
             // TODO: First Make Game
             // TODO: Then, make Game Items as Cards (Game Name, End Time,
             // TODO: List Players, & Join Game Button)
+
         // TODO: Make Create Game Button && Click Handler for Create Game Button.
         // TODO: Make Click Handler for Join Button (Go to Game Activity).
         clickedGame = Single.getInstance().getCurrentGame();
@@ -67,6 +70,7 @@ public class DetailActivity extends AppCompatActivity {
         public class GameViewHolder extends RecyclerView.ViewHolder {
             private TextView gameName, numberOfPlayers, gameTimeLeft;
             private RecyclerView playerRecyclerView;
+            private Button joinGame;
 
             public GameViewHolder(View view) {
                 super(view);
@@ -74,6 +78,7 @@ public class DetailActivity extends AppCompatActivity {
                 numberOfPlayers = (TextView) view.findViewById(R.id.numberOfPlayers);
                 gameTimeLeft = (TextView) view.findViewById(R.id.gameTimeLeft);
                 playerRecyclerView = (RecyclerView) view.findViewById(R.id.playerRecyclerView);
+                joinGame = (Button) view.findViewById(R.id.takeMeButton);
             }
         }
 
@@ -91,13 +96,22 @@ public class DetailActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(GameViewHolder holder, int position) {
-            Game game = games.get(position);
+            final Game game = games.get(position);
             holder.gameName.setText(game.getName());
             holder.numberOfPlayers.setText(String.format("Players: %s", String.valueOf(game.getPlayerSize())));
             holder.gameTimeLeft.setText(String.format("Time Left in game: %s", String.valueOf(game.getDuration())));
 
             mPlayerAdapter = new PlayersDataAdapter(game.getPlayers());
             setupPlayerRecyclerView(holder.playerRecyclerView);
+
+            holder.joinGame.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Single.getInstance().setCurrentGame(game);
+                    Intent intent = new Intent(getBaseContext(), GameActivity.class);
+                    startActivity(intent);
+                }
+            });
         }
 
         @Override

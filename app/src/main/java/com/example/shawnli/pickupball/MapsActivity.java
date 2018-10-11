@@ -55,7 +55,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     Toast.makeText(getBaseContext(),"Please select a marker",Toast.LENGTH_LONG).show();
                 }
                 else {
-                    Intent intent = new Intent(getBaseContext(), GameActivity.class);
+                    Intent intent = new Intent(getBaseContext(), DetailActivity.class);
                     startActivity(intent);
                 }
             }

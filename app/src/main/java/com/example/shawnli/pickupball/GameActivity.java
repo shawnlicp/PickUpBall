@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.shawnli.pickupball.Model.Court;
+import com.example.shawnli.pickupball.Model.Game;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -36,13 +37,15 @@ public class GameActivity extends AppCompatActivity {
         playerRecyclerView = (RecyclerView) findViewById(R.id.playerRecyclerView);
         testCourt = Single.getInstance().getCourts().get(0);
 
+        Game currentGame = Single.getInstance().getCurrentGame();
+
         //potentially
         //playerRecyclerView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(this);
         playerRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new PlayerAdapter(testCourt.getGames().get(0));
+        mAdapter = new PlayerAdapter(currentGame);
         playerRecyclerView.setAdapter(mAdapter);
 
         takeMebutton = (Button) findViewById(R.id.takeMeButton);
@@ -66,6 +69,6 @@ public class GameActivity extends AppCompatActivity {
         courtAddress = (TextView) findViewById(R.id.courtAddress);
         courtAddress.setText(currentCourt.getAddress());
         gameName = (TextView) findViewById(R.id.gameName);
-        gameName.setText(testCourt.getGames().get(0).getName());
+        gameName.setText(currentGame.getName());
     }
 }
