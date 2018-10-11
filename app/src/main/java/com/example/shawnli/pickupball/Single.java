@@ -18,8 +18,17 @@ public class Single {
     }
 
     private FirebaseFirestore db = null;
-
+    private Game currentGame = null;
     private List<Court> courts = null;
+    private Court currentCourt;
+
+    public Game getCurrentGame() {
+        return currentGame;
+    }
+
+    public void setCurrentGame(Game currentGame) {
+        this.currentGame = currentGame;
+    }
 
     public List<Court> getCourts() {
         return courts;
@@ -29,7 +38,9 @@ public class Single {
         this.courts = courts;
     }
 
+
     private Court currentCourt = null;
+
 
     public Court getCurrentCourt() {
         return currentCourt;

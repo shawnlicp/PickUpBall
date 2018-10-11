@@ -6,4 +6,8 @@
     <string name="court_name">Court Name</string>
     <string name="court_address">Court Address</string>
     <string name="basketball_img">Basketball Image</string>
+    <string name="game_name">Game Name</string>
+    <string name="number_symbol">#</string>
+    <string name="minutes_left_in_game"># Minutes Left In Game</string>
+    <string name="player_name">Player Name</string>
 </resources>

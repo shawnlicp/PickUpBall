@@ -100,6 +100,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Single.getInstance().setCurrentCourt(court);
                 nameView.setText(court.getName());
                 addressView.setText(court.getAddress());
+                Single.getInstance().setCurrentCourt(court);
                 return false;
             }
         });
