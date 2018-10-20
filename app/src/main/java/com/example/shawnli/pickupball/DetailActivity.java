@@ -33,15 +33,20 @@ public class DetailActivity extends AppCompatActivity {
 
         // Get the current court object
         Court currentCourt = Single.getInstance().getCurrentCourt();
+        TextView courtName, courtAddress;
+        courtName = (TextView) findViewById(R.id.courtName);
+        courtAddress = (TextView) findViewById(R.id.courtAddress);
+
+        courtName.setText(currentCourt.getName());
+        courtAddress.setText(currentCourt.getAddress());
 
         // Get list of Games in current Court
         gamesInCurrentCourt = currentCourt.getGames();
 
+
         // TODO: Change the Label of the Activity w/ Court Name
 
         // TODO: Make Recycler View
-//        RecyclerView gameRecyclerView = (RecyclerView) findViewById(R.id.gameRecyclerView);
-//        gameRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mGameAdapter = new GamesDataAdapter(gamesInCurrentCourt);
         setupGameRecyclerView();
 
@@ -60,7 +65,7 @@ public class DetailActivity extends AppCompatActivity {
     private void setupGameRecyclerView() {
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.gameRecyclerView);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(mGameAdapter);
     }
 
@@ -68,14 +73,15 @@ public class DetailActivity extends AppCompatActivity {
         private List<Game> games;
 
         public class GameViewHolder extends RecyclerView.ViewHolder {
-            private TextView gameName, numberOfPlayers, gameTimeLeft;
+            private TextView gameName, playersPlaying, playersOnWay ,gameTimeLeft;
             private RecyclerView playerRecyclerView;
             private Button joinGame;
 
             public GameViewHolder(View view) {
                 super(view);
                 gameName = (TextView) view.findViewById(R.id.gameName);
-                numberOfPlayers = (TextView) view.findViewById(R.id.numberOfPlayers);
+                playersPlaying = (TextView) view.findViewById(R.id.numberOfPlayersPlaying);
+                playersOnWay = (TextView) view.findViewById(R.id.numberOfPlayersOnWay);
                 gameTimeLeft = (TextView) view.findViewById(R.id.gameTimeLeft);
                 playerRecyclerView = (RecyclerView) view.findViewById(R.id.playerRecyclerView);
                 joinGame = (Button) view.findViewById(R.id.takeMeButton);
@@ -98,8 +104,9 @@ public class DetailActivity extends AppCompatActivity {
         public void onBindViewHolder(GameViewHolder holder, int position) {
             final Game game = games.get(position);
             holder.gameName.setText(game.getName());
-            holder.numberOfPlayers.setText(String.format("Players: %s", String.valueOf(game.getPlayerSize())));
-            holder.gameTimeLeft.setText(String.format("Time Left in game: %s", String.valueOf(game.getDuration())));
+            holder.playersPlaying.setText(String.format("People Playing: %s", "IDK")); // TODO: Get value of people playing.
+            holder.playersOnWay.setText(String.format("People On The Way: %s", "IDK")); // TODO: Get value of people on way.
+            holder.gameTimeLeft.setText(String.format("Time Left: %s minutes", String.valueOf(game.getDuration())));
 
             mPlayerAdapter = new PlayersDataAdapter(game.getPlayers());
             setupPlayerRecyclerView(holder.playerRecyclerView);

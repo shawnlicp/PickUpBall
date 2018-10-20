@@ -10,4 +10,6 @@
     <string name="number_symbol">#</string>
     <string name="minutes_left_in_game"># Minutes Left In Game</string>
     <string name="player_name">Player Name</string>
+    <string name="people_playing">People Playing: #</string>
+    <string name="people_on_the_way">People On The Way: #</string>
 </resources>
