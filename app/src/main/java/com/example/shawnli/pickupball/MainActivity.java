@@ -3,8 +3,14 @@ package com.example.shawnli.pickupball;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.shawnli.pickupball.Model.Court;
 import com.example.shawnli.pickupball.Model.Game;
@@ -17,7 +23,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     public String loadJsonFile(){
         String json = null;
@@ -85,27 +91,55 @@ public class MainActivity extends AppCompatActivity {
         return courts;
     }
 
+    EditText nameEntry;
+    String name = "Shawn";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //this is for the data base
-//        FirebaseFirestore db = FirebaseFirestore.getInstance();
-//        Single.getInstance().SetDB(db);
 
         //todo: read the json file and get the objects
         List<Court> courts = loadCourtsfromJson();
         Single.getInstance().setCourts(courts);
+        nameEntry = (EditText) findViewById(R.id.EnterName);
+        nameEntry.setText(name);
+        nameEntry.setOnClickListener(this);
+        nameEntry.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                name = editable.toString();
+            }
+        });
         Button button = this.findViewById(R.id.click);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(),MapsActivity.class);
-                startActivity(intent);
+
+                if(name != "") {
+                    Toast.makeText(getBaseContext(),"Welcome "+name,Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getBaseContext(), MapsActivity.class);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(getBaseContext(),"Please enter a name",Toast.LENGTH_LONG).show();
+                }
             }
         });
 
+    }
+    @Override
+    public void onClick(View v){
+        nameEntry.getText().clear();
     }
 }
