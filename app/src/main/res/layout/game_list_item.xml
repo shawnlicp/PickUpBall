@@ -10,102 +10,78 @@
     android:background="?android:attr/selectableItemBackground">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/gameInfoContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/gameName"
+                android:layout_width="0dp"
+                android:layout_height="85dp"
+                android:layout_marginStart="10dp"
+                android:text="@string/game_name"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_weight="0.25"/>
 
             <LinearLayout
-                android:id="@+id/gameInfoContainer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="63dp"
+                android:orientation="vertical"
+                android:layout_marginTop="22dp"
+                android:layout_weight="0.5">
+                <TextView
+                    android:id="@+id/numberOfPlayersPlaying"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="0dp">
-                    <TextView
-                        android:id="@+id/gameName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:text="@string/game_name"
-                        android:textSize="18sp"
-                        android:textStyle="bold"/>
+                    android:layout_marginStart="10dp"
+                    android:text="@string/people_playing"
+                    android:textSize="16sp"
+                    android:textStyle="italic"/>
 
-                    <TextView
-                        android:id="@+id/gameTimeLeft"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:layout_marginStart="25dp"
-                        android:text="@string/minutes_left_in_game"
-                        android:textSize="16sp"
-                        android:textStyle=""/>
-
-                </LinearLayout>
-
-                <RelativeLayout
+                <TextView
+                    android:id="@+id/numberOfPlayersOnWay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="5dp">
-                    <TextView
-                        android:id="@+id/numberOfPlayersPlaying"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:text="@string/people_playing"
-                        android:textSize="12sp"
-                        android:textStyle="italic"/>
+                    android:layout_marginStart="10dp"
+                    android:text="@string/people_on_the_way"
+                    android:textSize="16sp"
+                    android:textStyle="italic"/>
 
-                    <TextView
-                        android:id="@+id/numberOfPlayersOnWay"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@id/numberOfPlayersPlaying"
-                        android:layout_marginStart="10dp"
-                        android:text="@string/people_on_the_way"
-                        android:textSize="12sp"
-                        android:textStyle="italic"/>
-
-                </RelativeLayout>
             </LinearLayout>
 
             <Button
                 android:id="@+id/takeMeButton"
-                android:layout_width="120dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_toEndOf="@id/gameInfoContainer"
-                android:layout_marginStart="25dp"
-                android:gravity="fill"
+                android:layout_weight="0.25"
                 android:textAlignment="center"
                 android:text="@string/join_game"/>
 
-
-        </RelativeLayout>
-
+        </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/playerRecyclerView"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:visibility="invisible"/>
 
         <ImageView
             android:id="@+id/parent_list_item_expand_arrow"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="10dp"
             android:src="@android:drawable/arrow_down_float"
             tools:ignore="ContentDescription"
             android:layout_gravity="center"
-            android:layout_marginTop="2.5dp"
-            android:layout_marginBottom="2.5dp"/>
+            android:layout_marginBottom="2dp"/>
 
     </LinearLayout>
 

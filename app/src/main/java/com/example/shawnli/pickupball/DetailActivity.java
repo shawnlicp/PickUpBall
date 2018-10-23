@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.shawnli.pickupball.Model.Court;
 import com.example.shawnli.pickupball.Model.Game;
@@ -23,7 +25,7 @@ public class DetailActivity extends AppCompatActivity {
     protected List<Game> gamesInCurrentCourt;
     private Game clickedGame;
     private GamesDataAdapter mGameAdapter;
-    private PlayersDataAdapter mPlayerAdapter;
+    private PlayerAdapter mPlayerAdapter;
 
 
     @Override
@@ -43,20 +45,9 @@ public class DetailActivity extends AppCompatActivity {
         // Get list of Games in current Court
         gamesInCurrentCourt = currentCourt.getGames();
 
-
-        // TODO: Change the Label of the Activity w/ Court Name
-
-        // TODO: Make Recycler View
         mGameAdapter = new GamesDataAdapter(gamesInCurrentCourt);
         setupGameRecyclerView();
 
-
-            // TODO: First Make Game
-            // TODO: Then, make Game Items as Cards (Game Name, End Time,
-            // TODO: List Players, & Join Game Button)
-
-        // TODO: Make Create Game Button && Click Handler for Create Game Button.
-        // TODO: Make Click Handler for Join Button (Go to Game Activity).
         clickedGame = Single.getInstance().getCurrentGame();
 
 
@@ -70,21 +61,34 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     class GamesDataAdapter extends RecyclerView.Adapter<GamesDataAdapter.GameViewHolder> {
+
         private List<Game> games;
 
-        public class GameViewHolder extends RecyclerView.ViewHolder {
-            private TextView gameName, playersPlaying, playersOnWay ,gameTimeLeft;
+
+        public class GameViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+            private TextView gameName, playersPlaying, playersOnWay;
             private RecyclerView playerRecyclerView;
             private Button joinGame;
 
             public GameViewHolder(View view) {
                 super(view);
+                view.setOnClickListener(this);
                 gameName = (TextView) view.findViewById(R.id.gameName);
                 playersPlaying = (TextView) view.findViewById(R.id.numberOfPlayersPlaying);
                 playersOnWay = (TextView) view.findViewById(R.id.numberOfPlayersOnWay);
-                gameTimeLeft = (TextView) view.findViewById(R.id.gameTimeLeft);
                 playerRecyclerView = (RecyclerView) view.findViewById(R.id.playerRecyclerView);
                 joinGame = (Button) view.findViewById(R.id.takeMeButton);
+            }
+
+            @Override
+            public void onClick(View view) {
+//                Toast.makeText(getApplicationContext(), "Expand Card View", Toast.LENGTH_SHORT).show();
+                // TODO: display player list and expand view
+                Toast.makeText(getApplicationContext(), "PRV is visible: " + Integer.toString(playerRecyclerView.getVisibility()), Toast.LENGTH_SHORT).show();
+                playerRecyclerView.setVisibility(View.VISIBLE);
+                playerRecyclerView.setMinimumHeight(20 * mPlayerAdapter.getItemCount());
+//                Toast.makeText(getApplicationContext(), "PRV is NOW visible: " + Integer.toString(playerRecyclerView.getVisibility()), Toast.LENGTH_SHORT).show();
+                // Expandable Recycler View example.
             }
         }
 
@@ -106,9 +110,8 @@ public class DetailActivity extends AppCompatActivity {
             holder.gameName.setText(game.getName());
             holder.playersPlaying.setText(String.format("People Playing: %s", "IDK")); // TODO: Get value of people playing.
             holder.playersOnWay.setText(String.format("People On The Way: %s", "IDK")); // TODO: Get value of people on way.
-            holder.gameTimeLeft.setText(String.format("Time Left: %s minutes", String.valueOf(game.getDuration())));
 
-            mPlayerAdapter = new PlayersDataAdapter(game.getPlayers());
+            mPlayerAdapter = new PlayerAdapter(game);
             setupPlayerRecyclerView(holder.playerRecyclerView);
 
             holder.joinGame.setOnClickListener(new View.OnClickListener() {
@@ -119,6 +122,9 @@ public class DetailActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+
+
+
         }
 
         @Override
@@ -128,48 +134,9 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void setupPlayerRecyclerView(RecyclerView recyclerView) {
-//        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.playerRecyclerView);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(mPlayerAdapter);
     }
 
-    class PlayersDataAdapter extends RecyclerView.Adapter<PlayersDataAdapter.PlayerViewHolder> {
-        private List<User> players;
-
-        public class PlayerViewHolder extends RecyclerView.ViewHolder {
-            private TextView playerName;
-            private ImageView playerImage;
-
-            public PlayerViewHolder(View view) {
-                super(view);
-                playerName = (TextView) view.findViewById(R.id.playerName);
-                playerImage = (ImageView) view.findViewById(R.id.playerImage);
-            }
-        }
-
-        public PlayersDataAdapter(List<User> players) {
-            this.players = players;
-        }
-
-        @Override
-        public PlayerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.player_list_item, parent, false);
-
-            return new PlayerViewHolder(itemView);
-        }
-
-        @Override
-        public void onBindViewHolder(PlayerViewHolder holder, int position) {
-            User player = players.get(position);
-            holder.playerName.setText(player.getUsername());
-
-        }
-
-        @Override
-        public int getItemCount() {
-            return players.size();
-        }
-    }
 }

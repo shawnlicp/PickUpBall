@@ -24,12 +24,12 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
     public static class PlayerViewHolder extends RecyclerView.ViewHolder{
         public TextView userNameText;
         public TextView userStatusText;
-        public TextView userTimeText;
+//        public TextView userTimeText;
         public PlayerViewHolder(View v){
             super(v);
             userNameText = (TextView) v.findViewById(R.id.PlayerName);
             userStatusText = (TextView) v.findViewById(R.id.PlayerStatus);
-            userTimeText = (TextView) v.findViewById(R.id.PlayerTime);
+//            userTimeText = (TextView) v.findViewById(R.id.PlayerTime);
         }
     }
 
@@ -57,7 +57,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
         int hour = rand.nextInt(10)+5;
         int minute = rand.nextInt(60) + 10;
         String time = String.valueOf(hour) + ":" + String.valueOf(minute) + "PM";
-        holder.userTimeText.setText(time);
+//        holder.userTimeText.setText(time);
     }
 
     @Override
