@@ -6,6 +6,35 @@
     android:layout_height="match_parent"
     android:weightSum="1"
     tools:context="com.example.shawnli.pickupball.MapsActivity">
+    <include layout="@layout/toolbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></include>
+    <!--<Toolbar-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?android:attr/actionBarSize"-->
+        <!--android:background="@color/colorPrimary"-->
+        <!--android:title="Pick Up Ball"-->
+        <!--android:titleTextColor="#ffffff"-->
+        <!--android:layout_gravity="end"-->
+        <!--android:id="@+id/toolBar">-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_gravity="end|center_vertical"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--&gt;-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:text="List View"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:id="@+id/listText"-->
+                <!--android:textColor="#ffffff"/>-->
+        <!--</LinearLayout>-->
+
+
+    <!--</Toolbar>-->
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:map="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
