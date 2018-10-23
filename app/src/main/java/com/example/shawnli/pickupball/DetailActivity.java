@@ -18,6 +18,11 @@ import com.example.shawnli.pickupball.Model.Court;
 import com.example.shawnli.pickupball.Model.Game;
 import com.example.shawnli.pickupball.Model.User;
 
+import com.bignerdranch.expandablerecyclerview.ChildViewHolder;
+import com.bignerdranch.expandablerecyclerview.ExpandableRecyclerAdapter;
+import com.bignerdranch.expandablerecyclerview.ParentViewHolder;
+import com.bignerdranch.expandablerecyclerview.model.Parent;
+
 import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
@@ -65,31 +70,40 @@ public class DetailActivity extends AppCompatActivity {
         private List<Game> games;
 
 
-        public class GameViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public class GameViewHolder extends RecyclerView.ViewHolder {
             private TextView gameName, playersPlaying, playersOnWay;
             private RecyclerView playerRecyclerView;
             private Button joinGame;
 
             public GameViewHolder(View view) {
                 super(view);
-                view.setOnClickListener(this);
                 gameName = (TextView) view.findViewById(R.id.gameName);
                 playersPlaying = (TextView) view.findViewById(R.id.numberOfPlayersPlaying);
                 playersOnWay = (TextView) view.findViewById(R.id.numberOfPlayersOnWay);
                 playerRecyclerView = (RecyclerView) view.findViewById(R.id.playerRecyclerView);
                 joinGame = (Button) view.findViewById(R.id.takeMeButton);
+
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(getApplicationContext(), "Expand Card View", Toast.LENGTH_SHORT).show();
+                        playerRecyclerView.setVisibility(View.VISIBLE);
+                        playerRecyclerView.setMinimumHeight(20 * mPlayerAdapter.getItemCount());
+                    }
+                });
             }
 
-            @Override
-            public void onClick(View view) {
-//                Toast.makeText(getApplicationContext(), "Expand Card View", Toast.LENGTH_SHORT).show();
-                // TODO: display player list and expand view
-                Toast.makeText(getApplicationContext(), "PRV is visible: " + Integer.toString(playerRecyclerView.getVisibility()), Toast.LENGTH_SHORT).show();
-                playerRecyclerView.setVisibility(View.VISIBLE);
-                playerRecyclerView.setMinimumHeight(20 * mPlayerAdapter.getItemCount());
-//                Toast.makeText(getApplicationContext(), "PRV is NOW visible: " + Integer.toString(playerRecyclerView.getVisibility()), Toast.LENGTH_SHORT).show();
-                // Expandable Recycler View example.
-            }
+//            @Override
+//            public void onClick(View view) {
+////                Toast.makeText(getApplicationContext(), "Expand Card View", Toast.LENGTH_SHORT).show();
+//                // TODO: display player list and expand view
+//                Toast.makeText(getApplicationContext(), "PRV is visible: " + Integer.toString(playerRecyclerView.getVisibility()), Toast.LENGTH_SHORT).show();
+//                playerRecyclerView.setVisibility(View.VISIBLE);
+//                playerRecyclerView.setMinimumHeight(20 * mPlayerAdapter.getItemCount());
+//
+////                Toast.makeText(getApplicationContext(), "PRV is NOW visible: " + Integer.toString(playerRecyclerView.getVisibility()), Toast.LENGTH_SHORT).show();
+//                // Expandable Recycler View example.
+//            }
         }
 
         public GamesDataAdapter(List<Game> games) {
