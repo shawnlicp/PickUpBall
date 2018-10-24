@@ -72,10 +72,10 @@
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/playerRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:visibility="invisible"/>
+            android:id="@+id/playerRecyclerView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
 
         <ImageView
             android:id="@+id/parent_list_item_expand_arrow"
@@ -84,7 +84,8 @@
             android:src="@android:drawable/arrow_down_float"
             tools:ignore="ContentDescription"
             android:layout_gravity="center"
-            android:layout_marginBottom="2dp"/>
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="5dp"/>
 
     </LinearLayout>
 

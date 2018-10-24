@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.shawnli.pickupball.Model.Court;
 import com.example.shawnli.pickupball.Model.Game;
+import com.example.shawnli.pickupball.Model.User;
 
 import java.util.Random;
 
@@ -17,24 +18,52 @@ import java.util.Random;
  */
 
 public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder> {
-    final String [] status = {"on the way","playing"};
+    final String [] status = {"En route","Playing"};
 
     public Random rand = new Random();
     private Game game;
+    private int playersPlaying;
+    private int playersEnRoute;
+
+    public int getPlayersPlaying() {
+        return playersPlaying;
+    }
+
+    public void setPlayersPlaying(int playersPlaying) {
+        this.playersPlaying = playersPlaying;
+    }
+
+    public int getPlayersEnRoute() {
+        return playersEnRoute;
+    }
+
+    public void setPlayersEnRoute(int playerEnRoute) {
+        this.playersEnRoute = playerEnRoute;
+    }
+
     public static class PlayerViewHolder extends RecyclerView.ViewHolder{
         public TextView userNameText;
         public TextView userStatusText;
-//        public TextView userTimeText;
         public PlayerViewHolder(View v){
             super(v);
             userNameText = (TextView) v.findViewById(R.id.PlayerName);
             userStatusText = (TextView) v.findViewById(R.id.PlayerStatus);
-//            userTimeText = (TextView) v.findViewById(R.id.PlayerTime);
         }
     }
 
     public PlayerAdapter(Game game){
         this.game = game;
+        for (User player: game.getPlayers()) {
+            int index = rand.nextInt(2);
+            player.setStatus(index);
+
+            if(index == 0){
+                playersEnRoute++;
+            }
+            else if(index == 1){
+                playersPlaying++;
+            }
+        };
     }
 
 
@@ -42,22 +71,14 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
     @Override
     public PlayerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.player_row,parent,false);
-        PlayerAdapter.PlayerViewHolder viewHolder =new PlayerViewHolder(v);
 
-        return viewHolder;
+        return new PlayerViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PlayerViewHolder holder, int position) {
         holder.userNameText.setText(this.game.getPlayers().get(position).getUsername());
-
-        int index = rand.nextInt(2);
-        holder.userStatusText.setText(this.status[index]);
-
-        int hour = rand.nextInt(10)+5;
-        int minute = rand.nextInt(60) + 10;
-        String time = String.valueOf(hour) + ":" + String.valueOf(minute) + "PM";
-//        holder.userTimeText.setText(time);
+        holder.userStatusText.setText(this.status[this.game.getPlayers().get(position).getStatus()]);
     }
 
     @Override

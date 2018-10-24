@@ -12,4 +12,7 @@
     <string name="player_name">Player Name</string>
     <string name="people_playing">People Playing: #</string>
     <string name="people_on_the_way">People On The Way: #</string>
+    <string name="added_to_game">You have joined the game!</string>
+    <string name="take_me">TAKE ME</string>
+    <string name="close_item">X</string>
 </resources>
