@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <LinearLayout
@@ -12,18 +13,15 @@
             android:id="@+id/PlayerName"
             android:layout_weight="0.5"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/PlayerStatus"
-            android:layout_weight="0.25"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"/>
 
         <TextView
-            android:id="@+id/PlayerTime"
-            android:layout_weight="0.25"
+            android:id="@+id/PlayerStatus"
+            android:layout_weight="0.5"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"/>
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

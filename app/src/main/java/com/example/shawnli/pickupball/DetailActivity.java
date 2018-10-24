@@ -1,20 +1,28 @@
 package com.example.shawnli.pickupball;
 
+import android.app.DialogFragment;
+import android.app.FragmentManager;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.shawnli.pickupball.Model.Court;
 import com.example.shawnli.pickupball.Model.Game;
 import com.example.shawnli.pickupball.Model.User;
+
 
 import java.util.List;
 
@@ -23,7 +31,7 @@ public class DetailActivity extends AppCompatActivity {
     protected List<Game> gamesInCurrentCourt;
     private Game clickedGame;
     private GamesDataAdapter mGameAdapter;
-    private PlayersDataAdapter mPlayerAdapter;
+    private PlayerAdapter mPlayerAdapter;
 
 
     @Override
@@ -33,25 +41,19 @@ public class DetailActivity extends AppCompatActivity {
 
         // Get the current court object
         Court currentCourt = Single.getInstance().getCurrentCourt();
+        TextView courtName, courtAddress;
+        courtName = (TextView) findViewById(R.id.courtName);
+        courtAddress = (TextView) findViewById(R.id.courtAddress);
+
+        courtName.setText(currentCourt.getName());
+        courtAddress.setText(currentCourt.getAddress());
 
         // Get list of Games in current Court
         gamesInCurrentCourt = currentCourt.getGames();
 
-        // TODO: Change the Label of the Activity w/ Court Name
-
-        // TODO: Make Recycler View
-//        RecyclerView gameRecyclerView = (RecyclerView) findViewById(R.id.gameRecyclerView);
-//        gameRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mGameAdapter = new GamesDataAdapter(gamesInCurrentCourt);
         setupGameRecyclerView();
 
-
-            // TODO: First Make Game
-            // TODO: Then, make Game Items as Cards (Game Name, End Time,
-            // TODO: List Players, & Join Game Button)
-
-        // TODO: Make Create Game Button && Click Handler for Create Game Button.
-        // TODO: Make Click Handler for Join Button (Go to Game Activity).
         clickedGame = Single.getInstance().getCurrentGame();
 
 
@@ -60,25 +62,41 @@ public class DetailActivity extends AppCompatActivity {
     private void setupGameRecyclerView() {
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.gameRecyclerView);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(mGameAdapter);
     }
 
     class GamesDataAdapter extends RecyclerView.Adapter<GamesDataAdapter.GameViewHolder> {
+
         private List<Game> games;
 
+
         public class GameViewHolder extends RecyclerView.ViewHolder {
-            private TextView gameName, numberOfPlayers, gameTimeLeft;
+            private TextView gameName, playersPlaying, playersOnWay;
             private RecyclerView playerRecyclerView;
             private Button joinGame;
 
             public GameViewHolder(View view) {
                 super(view);
                 gameName = (TextView) view.findViewById(R.id.gameName);
-                numberOfPlayers = (TextView) view.findViewById(R.id.numberOfPlayers);
-                gameTimeLeft = (TextView) view.findViewById(R.id.gameTimeLeft);
-                playerRecyclerView = (RecyclerView) view.findViewById(R.id.playerRecyclerView);
+                playersPlaying = (TextView) view.findViewById(R.id.numberOfPlayersPlaying);
+                playersOnWay = (TextView) view.findViewById(R.id.numberOfPlayersOnWay);
+                playerRecyclerView = (RecyclerView) view.findViewById(R.id.playerRecyclerView1);
                 joinGame = (Button) view.findViewById(R.id.takeMeButton);
+
+                playerRecyclerView.setVisibility(View.GONE);
+
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (playerRecyclerView.getVisibility() == View.GONE){
+                            playerRecyclerView.setVisibility(View.VISIBLE);
+                        }
+                        else if(playerRecyclerView.getVisibility() == View.VISIBLE){
+                            playerRecyclerView.setVisibility(View.GONE);
+                        }
+                    }
+                });
             }
         }
 
@@ -98,20 +116,29 @@ public class DetailActivity extends AppCompatActivity {
         public void onBindViewHolder(GameViewHolder holder, int position) {
             final Game game = games.get(position);
             holder.gameName.setText(game.getName());
-            holder.numberOfPlayers.setText(String.format("Players: %s", String.valueOf(game.getPlayerSize())));
-            holder.gameTimeLeft.setText(String.format("Time Left in game: %s", String.valueOf(game.getDuration())));
 
-            mPlayerAdapter = new PlayersDataAdapter(game.getPlayers());
+            mPlayerAdapter = new PlayerAdapter(game);
             setupPlayerRecyclerView(holder.playerRecyclerView);
+
+            String peoplePlaying = Integer.toString(mPlayerAdapter.getPlayersPlaying());
+            String peopleEnRoute = Integer.toString(mPlayerAdapter.getPlayersEnRoute());
+            holder.playersPlaying.setText(String.format("People Playing: %s", peoplePlaying)); // TODO: Get value of people playing.
+            holder.playersOnWay.setText(String.format("People On The Way: %s", peopleEnRoute)); // TODO: Get value of people on way.
 
             holder.joinGame.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Single.getInstance().setCurrentGame(game);
-                    Intent intent = new Intent(getBaseContext(), GameActivity.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(getBaseContext(), popUpDialog.class);
+//                    startActivity(intent);
+//                    showPopup(view);
+                    show_dialog();
+
                 }
             });
+
+
+
         }
 
         @Override
@@ -120,49 +147,31 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
+    public void show_dialog() {
+        FragmentManager fm = getFragmentManager();
+        DialogFragment newFragment = new popUpDialog();
+        newFragment.show(fm, "abc");
+    }
+
+    public void showPopup(View view) {
+
+        View popupView = getLayoutInflater().inflate(R.layout.pop_up, null);
+
+        PopupWindow popupWindow = new PopupWindow(popupView,
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        // If the PopupWindow should be focusable
+        popupWindow.setFocusable(true);
+
+        // If you need the PopupWindow to dismiss when when touched outside
+        popupWindow.setBackgroundDrawable(new ColorDrawable());
+
+    }
+
     private void setupPlayerRecyclerView(RecyclerView recyclerView) {
-//        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.playerRecyclerView);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(mPlayerAdapter);
     }
 
-    class PlayersDataAdapter extends RecyclerView.Adapter<PlayersDataAdapter.PlayerViewHolder> {
-        private List<User> players;
-
-        public class PlayerViewHolder extends RecyclerView.ViewHolder {
-            private TextView playerName;
-            private ImageView playerImage;
-
-            public PlayerViewHolder(View view) {
-                super(view);
-                playerName = (TextView) view.findViewById(R.id.playerName);
-                playerImage = (ImageView) view.findViewById(R.id.playerImage);
-            }
-        }
-
-        public PlayersDataAdapter(List<User> players) {
-            this.players = players;
-        }
-
-        @Override
-        public PlayerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.player_list_item, parent, false);
-
-            return new PlayerViewHolder(itemView);
-        }
-
-        @Override
-        public void onBindViewHolder(PlayerViewHolder holder, int position) {
-            User player = players.get(position);
-            holder.playerName.setText(player.getUsername());
-
-        }
-
-        @Override
-        public int getItemCount() {
-            return players.size();
-        }
-    }
 }
