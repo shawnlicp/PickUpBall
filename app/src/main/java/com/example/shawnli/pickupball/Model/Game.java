@@ -58,4 +58,12 @@ public class Game {
     public void setDuration(int duration) {
         this.duration = duration;
     }
+
+    public int getPlayersOnWay() {
+        List<User> playersList = getPlayers();
+        for (User player:playersList) {
+
+        }
+        return 0;
+    }
 }
