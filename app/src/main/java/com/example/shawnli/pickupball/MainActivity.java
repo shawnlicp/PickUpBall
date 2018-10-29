@@ -1,5 +1,6 @@
 package com.example.shawnli.pickupball;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,8 +8,10 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -93,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     EditText nameEntry;
     String name = "Shawn";
+    LinearLayout mainBackground;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +106,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //todo: read the json file and get the objects
         List<Court> courts = loadCourtsfromJson();
         Single.getInstance().setCourts(courts);
+        mainBackground = findViewById(R.id.mainbackground);
+        mainBackground.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                assert mgr != null;
+                mgr.hideSoftInputFromWindow(mainBackground.getWindowToken(), 0);
+            }
+
+        });
         nameEntry = (EditText) findViewById(R.id.EnterName);
         nameEntry.setText(name);
         nameEntry.setOnClickListener(this);
