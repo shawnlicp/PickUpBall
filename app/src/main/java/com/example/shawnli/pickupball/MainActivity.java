@@ -141,6 +141,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
 
                 if(name != "") {
+                    User newUser = new User();
+                    newUser.setUsername(name);
+                    Single.getInstance().setCurrentUser(newUser);
                     Toast.makeText(getBaseContext(),"Welcome "+name,Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getBaseContext(), MapsActivity.class);
                     startActivity(intent);

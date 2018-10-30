@@ -2,7 +2,7 @@
     <string name="app_name">PickUpBall</string>
     <string name="title_activity_maps">Map</string>
     <string name="start_game">Start Game</string>
-    <string name="join_game">Join Game</string>
+    <string name="join_game">JOIN</string>
     <string name="court_name">Court Name</string>
     <string name="court_address">Court Address</string>
     <string name="basketball_img">Basketball Image</string>
@@ -13,7 +13,8 @@
     <string name="people_playing">People Playing: #</string>
     <string name="people_on_the_way">People On The Way: #</string>
     <string name="added_to_game">You have joined the game!</string>
-    <string name="take_me">TAKE ME</string>
+    <string name="take_me">Directions</string>
+    <string name="done">Done</string>
     <string name="close_item">X</string>
 
     <!-- TODO: Remove or change this placeholder text -->
