@@ -74,9 +74,6 @@ public class DetailActivity extends AppCompatActivity {
         mStartGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //make a toast
-                Toast.makeText(getBaseContext(),"Switch to Start Game Activiry",Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getBaseContext(), StartGameActivity.class);
                 startActivity(intent);
             }

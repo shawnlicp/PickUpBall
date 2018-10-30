@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -97,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText nameEntry;
     String name = "Shawn";
     LinearLayout mainBackground;
+    Button button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,7 +138,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 name = editable.toString();
             }
         });
-        Button button = this.findViewById(R.id.click);
+
+        button = this.findViewById(R.id.click);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -151,6 +155,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 else{
                     Toast.makeText(getBaseContext(),"Please enter a name",Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+
+        nameEntry.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    button.performClick();
+                    return true;
+                }
+                return false;
             }
         });
 

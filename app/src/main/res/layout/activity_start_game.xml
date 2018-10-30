@@ -9,18 +9,20 @@
     android:background="@color/coolBlue">
 
     <LinearLayout
+        android:id="@+id/startGameBG1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/coolBlue">
 
         <LinearLayout
+            android:id="@+id/startGameBG2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-
             android:background="@color/coolBlue">
 
             <LinearLayout
+                android:id="@+id/startGameBG3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -46,6 +48,7 @@
                     android:id="@+id/enterGameName"
                     android:inputType="text"
                     android:textColor="#fff"
+                    android:imeOptions="actionDone"
                     android:text="@string/game_name"/>
 
                 <Button
