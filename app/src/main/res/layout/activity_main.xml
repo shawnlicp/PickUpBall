@@ -51,6 +51,7 @@
             android:background="#ffffff"
             android:ems="10"
             android:id="@+id/EnterName"
+            android:imeOptions="actionNext"
             />
     </LinearLayout>
 

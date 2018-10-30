@@ -1,13 +1,21 @@
 package com.example.shawnli.pickupball;
 
+import android.content.Context;
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shawnli.pickupball.Model.Court;
@@ -22,10 +30,24 @@ public class StartGameActivity extends AppCompatActivity implements View.OnClick
     EditText nameEntry;
     String name = "Game name...";
     Button mButton;
+    LinearLayout startGameBG;
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                super.onBackPressed();
+                return true;
+        }
+        return false;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_game);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         mButton = (Button) findViewById(R.id.createGameButton);
 
@@ -48,6 +70,30 @@ public class StartGameActivity extends AppCompatActivity implements View.OnClick
                 name = editable.toString();
             }
         });
+
+        nameEntry.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    mButton.performClick();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        startGameBG = (LinearLayout) findViewById(R.id.startGameBG1);
+        startGameBG.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                assert mgr != null;
+                mgr.hideSoftInputFromWindow(startGameBG.getWindowToken(), 0);
+            }
+
+        });
+
+
         mButton = (Button) findViewById(R.id.createGameButton);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
