@@ -4,12 +4,14 @@ import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -34,11 +36,22 @@ public class DetailActivity extends AppCompatActivity {
     private PlayerAdapter mPlayerAdapter;
     private Button mStartGameButton;
 
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                super.onBackPressed();
+                return true;
+        }
+        return false;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         // Get the current court object
         Court currentCourt = Single.getInstance().getCurrentCourt();
@@ -82,8 +95,6 @@ public class DetailActivity extends AppCompatActivity {
     class GamesDataAdapter extends RecyclerView.Adapter<GamesDataAdapter.GameViewHolder> {
 
         private List<Game> games;
-
-
         public class GameViewHolder extends RecyclerView.ViewHolder {
             private TextView gameName, playersPlaying, playersOnWay;
             private RecyclerView playerRecyclerView;
@@ -126,7 +137,7 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(GameViewHolder holder, int position) {
+        public void onBindViewHolder(final GameViewHolder holder, int position) {
             final Game game = games.get(position);
             holder.gameName.setText(game.getName());
 
@@ -135,16 +146,21 @@ public class DetailActivity extends AppCompatActivity {
 
             String peoplePlaying = Integer.toString(mPlayerAdapter.getPlayersPlaying());
             String peopleEnRoute = Integer.toString(mPlayerAdapter.getPlayersEnRoute());
-            holder.playersPlaying.setText(String.format("People Playing: %s", peoplePlaying));
-            holder.playersOnWay.setText(String.format("People On The Way: %s", peopleEnRoute));
+            holder.playersPlaying.setText(String.format("Playing: %s", peoplePlaying));
+            holder.playersOnWay.setText(String.format("On The Way: %s", peopleEnRoute));
 
             holder.joinGame.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Single.getInstance().setCurrentGame(game);
-                    game.addPlayer(Single.getInstance().getCurrentUser());
+                    boolean addSuccess = game.addPlayer(Single.getInstance().getCurrentUser());
+                    if(addSuccess == false){
+                        Toast.makeText(getBaseContext(),"You have already joined this game", Toast.LENGTH_LONG).show();
+                        return;
+                    }
                     mPlayerAdapter.setPlayersPlaying(mPlayerAdapter.getPlayersEnRoute() + 1);
-
+                    mPlayerAdapter.notifyDataSetChanged();
+                    mGameAdapter.notifyDataSetChanged();
                     show_dialog();  // This creates the pop-up Dialog.
 
                 }

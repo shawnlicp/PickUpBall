@@ -54,13 +54,16 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
     public PlayerAdapter(Game game){
         this.game = game;
         for (User player: game.getPlayers()) {
-            int index = rand.nextInt(2);
-            player.setStatus(index);
+            if(player.getStatus()== -1){
+                int index = rand.nextInt(2);
+                player.setStatus(index);
 
-            if(index == 0){
+
+            }
+            if(player.getStatus() == 0){
                 playersEnRoute++;
             }
-            else if(index == 1){
+            else if(player.getStatus() == 1){
                 playersPlaying++;
             }
         };

@@ -12,6 +12,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,15 +53,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         Toolbar toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
 
-        TextView listView = toolbar.findViewById(R.id.listText);
-        listView.setOnClickListener(new View.OnClickListener() {
+        LinearLayout linearLayout = toolbar.findViewById(R.id.listView);
+        linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getBaseContext(), ListActivity.class);
                 startActivity(intent);
             }
         });
-
+        
         mCard = findViewById(R.id.card_view);
         nameView = findViewById(R.id.CardName);
         addressView = findViewById(R.id.CardAddress);
@@ -104,8 +105,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.getUiSettings().setMapToolbarEnabled(false);
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-
-
         List<Court> courts = Single.getInstance().getCourts();
 
         for( Court court : courts){
@@ -122,7 +121,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             .icon(test)
                             .flat(true));
             markerCourtMap.put(marker,court);
-            marker.showInfoWindow();
+            //marker.showInfoWindow();
             mMap.setOnInfoWindowClickListener(this);
         }
         // Add a marker in Sydney and move the camera
@@ -130,6 +129,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
+                marker.showInfoWindow();
                 Court court = markerCourtMap.get(marker);
                 Single.getInstance().setCurrentCourt(court);
                 nameView.setText(court.getName());
@@ -143,18 +143,27 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
         LatLng provo = new LatLng(40.233845, -111.658531);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom((provo),12.0f));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom((provo),13.0f));
     }
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        if(Single.getInstance().getCurrentCourt() == null){
-            //make a toast
-            Toast.makeText(getBaseContext(),"Please select a marker",Toast.LENGTH_LONG).show();
+        Single.getInstance().setCurrentCourt(markerCourtMap.get(marker));
+        Intent intent = new Intent(getBaseContext(), DetailActivity.class);
+        startActivity(intent);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Single.getInstance().setCurrentCourt(null);
+        if(mMap != null){
+            mMap.clear();
+            onMapReady(mMap);
         }
-        else {
-            Intent intent = new Intent(getBaseContext(), DetailActivity.class);
-            startActivity(intent);
-        }
+        nameView.setText("");
+        addressView.setText("");
+        imageView.setVisibility(View.INVISIBLE);
     }
 }

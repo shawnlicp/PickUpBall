@@ -7,18 +7,17 @@
     android:background="@color/colorPrimary"
     android:id="@+id/toolBar"
     android:layout_gravity="end">
-    <LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:layout_gravity="end|center_vertical"
-    android:layout_marginEnd="10dp"
-    >
-    <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:text="List View"
-    android:gravity="center_vertical"
-    android:id="@+id/listText"
-    android:textColor="#ffffff"/>
+    <LinearLayout android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginEnd="10dp"
+        android:id="@+id/listView">
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="List View"
+        android:gravity="center_vertical"
+        android:id="@+id/listText"
+        android:textColor="#ffffff"/>
     </LinearLayout>
 </android.support.v7.widget.Toolbar>

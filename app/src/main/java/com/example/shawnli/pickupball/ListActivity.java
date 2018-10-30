@@ -28,7 +28,6 @@ public class ListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Toast.makeText(getBaseContext(),"clicked",Toast.LENGTH_SHORT).show();
                 super.onBackPressed();
                 return true;
         }

@@ -7,7 +7,7 @@ package com.example.shawnli.pickupball.Model;
 public class User {
     private String username;
     private String password;
-    private int status;
+    private int status = -1;
 
     public int getStatus() {
         return status;

@@ -27,8 +27,14 @@ public class Game {
         players = new ArrayList<>();
     }
 
-    public void addPlayer(User player){
+    public Boolean addPlayer(User player){
+        for(User p : players){
+            if(p.getUsername()==player.getUsername()){
+                return false;
+            }
+        }
         players.add(player);
+        return true;
     }
 
     public void setPlayers(List<User> players) {
