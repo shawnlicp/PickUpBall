@@ -61,7 +61,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 startActivity(intent);
             }
         });
-        
+
         mCard = findViewById(R.id.card_view);
         nameView = findViewById(R.id.CardName);
         addressView = findViewById(R.id.CardAddress);
