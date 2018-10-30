@@ -32,6 +32,7 @@ public class DetailActivity extends AppCompatActivity {
     private Game clickedGame;
     private GamesDataAdapter mGameAdapter;
     private PlayerAdapter mPlayerAdapter;
+    private Button mStartGameButton;
 
 
     @Override
@@ -44,6 +45,7 @@ public class DetailActivity extends AppCompatActivity {
         TextView courtName, courtAddress;
         courtName = (TextView) findViewById(R.id.courtName);
         courtAddress = (TextView) findViewById(R.id.courtAddress);
+        mStartGameButton = (Button) findViewById(R.id.createGame);
 
         courtName.setText(currentCourt.getName());
         courtAddress.setText(currentCourt.getAddress());
@@ -55,6 +57,17 @@ public class DetailActivity extends AppCompatActivity {
         setupGameRecyclerView();
 
         clickedGame = Single.getInstance().getCurrentGame();
+
+        mStartGameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //make a toast
+                Toast.makeText(getBaseContext(),"Switch to Start Game Activiry",Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getBaseContext(), StartGameActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }
@@ -122,17 +135,17 @@ public class DetailActivity extends AppCompatActivity {
 
             String peoplePlaying = Integer.toString(mPlayerAdapter.getPlayersPlaying());
             String peopleEnRoute = Integer.toString(mPlayerAdapter.getPlayersEnRoute());
-            holder.playersPlaying.setText(String.format("People Playing: %s", peoplePlaying)); // TODO: Get value of people playing.
-            holder.playersOnWay.setText(String.format("People On The Way: %s", peopleEnRoute)); // TODO: Get value of people on way.
+            holder.playersPlaying.setText(String.format("People Playing: %s", peoplePlaying));
+            holder.playersOnWay.setText(String.format("People On The Way: %s", peopleEnRoute));
 
             holder.joinGame.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Single.getInstance().setCurrentGame(game);
-//                    Intent intent = new Intent(getBaseContext(), popUpDialog.class);
-//                    startActivity(intent);
-//                    showPopup(view);
-                    show_dialog();
+                    game.addPlayer(Single.getInstance().getCurrentUser());
+                    mPlayerAdapter.setPlayersPlaying(mPlayerAdapter.getPlayersEnRoute() + 1);
+
+                    show_dialog();  // This creates the pop-up Dialog.
 
                 }
             });
@@ -151,21 +164,6 @@ public class DetailActivity extends AppCompatActivity {
         FragmentManager fm = getFragmentManager();
         DialogFragment newFragment = new popUpDialog();
         newFragment.show(fm, "abc");
-    }
-
-    public void showPopup(View view) {
-
-        View popupView = getLayoutInflater().inflate(R.layout.pop_up, null);
-
-        PopupWindow popupWindow = new PopupWindow(popupView,
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-        // If the PopupWindow should be focusable
-        popupWindow.setFocusable(true);
-
-        // If you need the PopupWindow to dismiss when when touched outside
-        popupWindow.setBackgroundDrawable(new ColorDrawable());
-
     }
 
     private void setupPlayerRecyclerView(RecyclerView recyclerView) {

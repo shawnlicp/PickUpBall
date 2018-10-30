@@ -2,6 +2,7 @@ package com.example.shawnli.pickupball;
 
 import com.example.shawnli.pickupball.Model.Court;
 import com.example.shawnli.pickupball.Model.Game;
+import com.example.shawnli.pickupball.Model.User;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
@@ -21,6 +22,15 @@ public class Single {
     private Game currentGame = null;
     private List<Court> courts = null;
     private Court currentCourt;
+    private User currentUser;
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
 
     public Game getCurrentGame() {
         return currentGame;
